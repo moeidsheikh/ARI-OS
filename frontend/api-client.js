@@ -1,10 +1,10 @@
 /**
  * ARI-OS (AR Industries Operating System) - Centralized Spring Boot + MySQL API Client
- * Connects the frontend to the Java Spring Boot REST backend running on http://localhost:8080/api/v1
+ * Connects the frontend to the Java Spring Boot REST backend running on https://ari-os-backend.onrender.com/api/v1
  */
 
-const API_BASE_URL = window.API_BASE_URL || 'http://localhost:8080/api/v1';
-const HEALTH_URL = window.HEALTH_URL || (window.API_BASE_URL ? window.API_BASE_URL.replace(/\/api\/v1\/?$/, '') + '/actuator/health' : 'http://localhost:8080/actuator/health');
+const API_BASE_URL = window.API_BASE_URL || 'https://ari-os-backend.onrender.com/api/v1';
+const HEALTH_URL = window.HEALTH_URL || (window.API_BASE_URL ? window.API_BASE_URL.replace(/\/api\/v1\/?$/, '') + '/actuator/health' : 'https://ari-os-backend.onrender.com/actuator/health');
 
 const apiClient = {
   token: localStorage.getItem('ARI_JWT_TOKEN') || null,

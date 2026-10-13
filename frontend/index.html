@@ -112,7 +112,11 @@
       });
     })();
   </script>
-  <!-- Centralized Spring Boot API Client -->
+  <!-- Centralized Spring Boot API Client Configuration -->
+  <script>
+    window.API_BASE_URL = 'https://ari-os-backend.onrender.com/api/v1';
+    window.HEALTH_URL = 'https://ari-os-backend.onrender.com/actuator/health';
+  </script>
   <script src="api-client.js"></script>
   <!-- Universal Custom Select & Floating Menu Engine (ARI-OS) -->
   <script>
@@ -1278,7 +1282,7 @@
                 <i data-lucide="database" class="w-3.5 h-3.5 text-slate-400"></i> Live Backend Server:
               </span>
               <span id="modal-admin-backend-pill"
-                class="font-bold text-blue-600 font-code text-[11px]">localhost:8080</span>
+                class="font-bold text-blue-600 font-code text-[11px]">ari-os-backend.onrender.com</span>
             </div>
             <div class="flex items-center justify-between text-xs">
               <span class="text-slate-500 flex items-center gap-1.5 font-medium">
@@ -1341,7 +1345,7 @@
             <div class="flex items-center gap-2">
               <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
               <span>Probing backend on <code
-                  class="font-mono text-[11px] bg-amber-100/70 px-1 py-0.5 rounded">localhost:8080</code>...</span>
+                  class="font-mono text-[11px] bg-amber-100/70 px-1 py-0.5 rounded">ari-os-backend.onrender.com</code>...</span>
             </div>
             <button type="button" onclick="checkBackendHealth(true)"
               class="underline text-[11px] font-bold text-amber-700 hover:text-amber-900">Check</button>
@@ -1404,7 +1408,7 @@
         </div>
 
         <div class="mt-4 text-center relative z-10">
-          <span class="text-[10px] text-slate-400">Security: JWT Stateless Bearer • HMAC-SHA256 • Port :8080</span>
+          <span class="text-[10px] text-slate-400">Security: JWT Stateless Bearer • HMAC-SHA256 • Render Cloud</span>
         </div>
       </div>
     </div>
@@ -1936,7 +1940,7 @@
           </div>
           <h3 class="text-base sm:text-lg font-black text-slate-900 tracking-tight mb-1">Backend Server Offline</h3>
           <p class="text-xs text-slate-500 max-w-md mb-5 leading-relaxed">
-            Cannot communicate with the Java Spring Boot REST backend at <code class="font-mono text-rose-600 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-200">http://localhost:8080/api/v1</code>.
+            Cannot communicate with the Java Spring Boot REST backend at <code class="font-mono text-rose-600 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-200">https://ari-os-backend.onrender.com/api/v1</code>.
             Live MySQL ${moduleName} cannot be loaded while the server is offline.
           </p>
           
@@ -1962,7 +1966,7 @@
         <div class="flex-1 flex flex-col items-center justify-center p-12 text-center my-12">
           <div class="w-10 h-10 border-3 border-blue-600 border-t-transparent rounded-full animate-spin mb-4"></div>
           <p class="text-xs font-semibold text-slate-700">${message}</p>
-          <p class="text-[11px] text-slate-400 mt-1">Connecting to MySQL via localhost:8080</p>
+          <p class="text-[11px] text-slate-400 mt-1">Connecting to Cloud MySQL via Render</p>
         </div>
       `;
     }
@@ -2176,7 +2180,7 @@
       }
       if (backendEl) {
         const isOnline = window.apiClient && window.apiClient.isOnline;
-        backendEl.textContent = isOnline ? 'Connected (MySQL :8080)' : 'Standalone / Local Cache';
+        backendEl.textContent = isOnline ? 'Connected (Cloud MySQL)' : 'Standalone / Local Cache';
         backendEl.className = isOnline
           ? 'font-bold text-emerald-600 font-code text-[11px]'
           : 'font-bold text-amber-600 font-code text-[11px]';
@@ -2677,7 +2681,7 @@
                   <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
                     <span class="text-[10px] uppercase font-bold text-slate-400 block">Database Server</span>
                     <span class="font-bold font-code ${isOnline ? 'text-emerald-700' : 'text-amber-700'}">
-                      ${isOnline ? 'MySQL :8080 (Connected)' : 'Local Offline Mode'}
+                      ${isOnline ? 'Cloud MySQL (Connected)' : 'Local Offline Mode'}
                     </span>
                   </div>
                   <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-100">
@@ -3344,7 +3348,7 @@
         `,
         onSubmit: async () => {
           if (!apiClient.isOnline) {
-            showToast("Backend Server Offline", "Cannot save price record while Spring Boot is offline. Please start the backend on port 8080.", "error");
+            showToast("Backend Server Offline", "Cannot save price record while Spring Boot is offline. Please check cloud backend status.", "error");
             return false;
           }
 
@@ -4413,7 +4417,7 @@
 
     async function commitNewInvoice(invId) {
       if (!apiClient.isOnline) {
-        showToast("Backend Server Offline", "Cannot create or save tax invoices while Spring Boot is offline. Please start backend on port 8080.", "error");
+        showToast("Backend Server Offline", "Cannot create or save tax invoices while Spring Boot is offline. Please check cloud backend status.", "error");
         return;
       }
 
@@ -4998,7 +5002,7 @@
         `,
         onSubmit: async () => {
           if (!apiClient.isOnline) {
-            showToast("Backend Server Offline", "Cannot register stock item while Spring Boot is offline. Please start the backend on port 8080.", "error");
+            showToast("Backend Server Offline", "Cannot register stock item while Spring Boot is offline. Please check cloud backend status.", "error");
             return false;
           }
 
