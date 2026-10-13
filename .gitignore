@@ -1,0 +1,7 @@
+﻿target/
+**/target/
+.vscode/
+*.log
+*.class
+.DS_Store
+Thumbs.db
