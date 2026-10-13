@@ -1,0 +1,20 @@
+{
+  "name": "ari-os-frontend",
+  "version": "1.0.0",
+  "description": "ARI-OS (AR Industries Operating System) Frontend Single Page Application",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 3000",
+    "serve": "python -m http.server 3000",
+    "dev": "python -m http.server 3000"
+  },
+  "keywords": [
+    "ari-os",
+    "erp",
+    "manufacturing",
+    "modular-boxes",
+    "fan-boxes"
+  ],
+  "author": "AR Industries",
+  "license": "ISC"
+}

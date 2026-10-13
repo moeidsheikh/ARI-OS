@@ -1,0 +1,10 @@
+[build]
+  # Base directory where frontend source files live
+  base = "frontend"
+  # Directory to publish (relative to base directory)
+  publish = "."
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
